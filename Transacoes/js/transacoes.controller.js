@@ -10,8 +10,7 @@ angular.module("TransacoesModule").controller("TransacoesController", function (
     vm.listaTransferencias = transferencias;
    
     vm.salvarTransferencia = function (novaTransferencia) {
-
-        var taxaTranferencia = vm.definirTaxa(novaTransferencia);
+        var taxaTransferencia = vm.definirTaxa(novaTransferencia);
         if (!vm.validarForm(novaTransferencia)) return;
         var transferencia ={
             contaOrigem : novaTransferencia.contaOrigem,
@@ -19,17 +18,17 @@ angular.module("TransacoesModule").controller("TransacoesController", function (
             valorTransacao : novaTransferencia.valorTransacao,
             dataTransferencia : vm.formatarDataFullTime(novaTransferencia.dataTransferencia),
             dataAgendamento :  vm.formatarDataFullTime(vm.dataAgendamento),
-            taxaTranferencia: taxaTranferencia
+            taxaTransferencia: taxaTransferencia
         };
 
 
         transferencias.push(transferencia);
         console.log(transferencias);
         salvarLocalStorage();
-        vm.limparTranferencia(novaTransferencia);
+        vm.limparTransferencia(novaTransferencia);
         
     }
-
+    //validação dos inputs
     vm.validarForm = function(item){
         var dataTranf = vm.definirDiferencaData(item);
         if(dataTranf <-1){
@@ -42,18 +41,20 @@ angular.module("TransacoesModule").controller("TransacoesController", function (
         }
 
     }   
-
+    //formatacao de data Full Time para Short Time
     vm.formatarDataFullTime = function(dataFullTime){
         var data = new Date(dataFullTime);
         dataFormatada = data.toLocaleDateString('pt-BR',{timeZone: 'UTC'})
         return dataFormatada;
     }
-    vm.limparTranferencia = function(novaTransferencia){
+    //limpa inputs do formulario
+    vm.limparTransferencia = function(novaTransferencia){
         novaTransferencia.contaOrigem = "";
         novaTransferencia.contaDestino = "";
         novaTransferencia.valorTransacao = 0;
         novaTransferencia.dataTransferencia = '';
     }
+    //define diferenca entre duas datas
     vm.definirDiferencaData = function(item){
         let dataAgendamento = vm.dataAgendamento;
         let dataTransferencia = new Date(item.dataTransferencia);
@@ -99,6 +100,7 @@ angular.module("TransacoesModule").controller("TransacoesController", function (
             }
         }
     }
+    //salva lista de transferencias
     function salvarLocalStorage(){
         localStorage.setItem("list_transf", JSON.stringify(transferencias));
     }
