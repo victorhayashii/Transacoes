@@ -1,0 +1,110 @@
+body{
+    background-color: #D8D8D8;
+}
+.header{
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    margin: auto auto;
+    background-color: #283A4F;
+    color:#D8D8D8;
+    height: 3rem;
+}
+.header__titulo{
+    font-size: 1.5rem;
+    text-align: left;
+    padding: .8rem 0 0 1rem ;    
+}
+.main{ 
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 0 auto;
+    width: 100%;
+    height: 100%;
+   
+}
+.main__titulo{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #F2F2F2;
+    font-size: 2.4rem;
+    padding-top: 8rem;
+    display: flex;
+    justify-content: center;
+    margin-bottom: .5rem;
+    
+}
+.main__form{
+    background-color:#ffffff;
+    width: 60%;
+    height: 50%;
+    padding: 2.5rem;
+}
+.form__item{
+    padding-bottom: .8rem;
+    display: flex;
+}
+.form__label{
+    font-size: 1rem;
+    font-weight: bold;
+    width: 70%;
+    color: #283A4F;
+}
+.form__input{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    padding-left: .8rem;
+    height: 2.5rem;
+    width: 100%;
+    margin-top: .8rem;
+    border: none;
+    background-color:#D8D8D8;
+}
+.form__button{
+    float: right;
+    background-color: #283A4F;
+    color: #D8D8D8;
+    font-size: 1.2rem;
+    padding: .5rem;
+    margin-top: 1rem;
+}
+.lista{
+    width: 80%;
+    margin: 0 auto 0 auto;
+    margin-top: 2rem; 
+}
+table.tabelaCabecalho{
+    table-layout: fixed;
+    width: 100%;
+    margin-bottom: 0;
+}
+.tabelaHeader{
+    background-color: #283A4F;
+    color: #D8D8D8;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.header__item{
+    border: 1px solid #F2F2F2;
+    text-align: center;
+    padding-top: 1rem !important;
+   
+}
+.lista__body{
+    width: 80%;
+    margin: 0 auto 0 auto;
+    margin-top: -1px;
+}
+
+.item__conteudo{
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid #D8D8D8;
+    height: 2rem;
+    text-align: center;
+    background-color: #F2F2F2 !important ;
+    padding-top: 2rem;
+    max-width: 100%;
+}
+.item__svg{
+    height: 1.3rem;
+    
+}

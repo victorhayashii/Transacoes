@@ -1,17 +1,120 @@
 <!DOCTYPE html>
 <html lang="pt-br" ng-app="TransacoesModule">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-        <script src="../js/transacoes.module.js"></script>
-        <script src="../js/transacoes.controller.js"></script>
-        <link rel="stylesheet" src="../css/reset.css">
-        <link rel="stylesheet" src="../css/transacoes.module.scss">
-        <title>Transações</title>
-    </head>
-    <body ng-controller="TransacoesController">
-       
-    </body>
+
+<head>
+    <title>Transações</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous"></script>
+    <script src="../js/transacoes.module.js"></script>
+    <script src="../js/transacoes.controller.js"></script>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/transacoes.css">
+</head>
+
+<body ng-controller="TransacoesController">
+    <header class="header">
+        <h1 class="header__titulo">TRANSAÇÕES APP</h1>
+    </header>
+    <h3 class="main__titulo">NOVA TRANSAÇÃO</h3>
+    <main class="main">
+        <form class="main__form" ng-submit="salvarTransferencia(novaTransferencia)">
+            <div class="form__item">
+                <label class="form__label" for="ContaOrigem">Conta Origem</label>
+                <input class="form__input" type="text" id="ContaOrigem" ng-model="novaTransferencia.contaOrigem"
+                    placeholder="0000-0" required>
+            </div>
+            <div class="form__item">
+                <label class="form__label" for="ContaDestino">Conta Destino</label>
+                <input class="form__input" type="text" id="ContaDestino" ng-model="novaTransferencia.contaDestino"
+                    placeholder="0000-0" required>
+            </div>
+            <div class="form__item">
+                <label class="form__label" for="valorTransacao">Valor</label>
+                <input class="form__input" type="number" id="valorTransacao" ng-model="novaTransferencia.valorTransacao"
+                    placeholder="0.0" required>
+            </div>
+
+            <div class="form__item">
+                <label class="form__label" for="dataTransferencia">Data da Transferência </label>
+                <input class="form__input" type="date" id="dataTransferencia"
+                    ng-model="novaTransferencia.dataTransferencia" required>
+            </div>
+            <div class="form__item">
+                <label class="form__label" for="dataAgendamento">Data do Agendamento </label>
+                <input class="form__input" type="date" id="dataAgendamento" ng-disabled="true"
+                    ng-model="dataAgendamento">
+            </div>
+
+            <button class="form__button" type="submit">Enviar Transferência</button>
+        </form>
+
+
+    </main>
+    <div>
+
+        <div class="lista">
+            <table class="table tabelaCabecalho">
+                <colgroup>
+                    <col style="width: 15%">
+                    <col style="width: 15%">
+                    <col style="width: 15%">
+                    <col style="width: 20%">
+                    <col style="width: 20%">
+                    <col style="width: 15%">
+                </colgroup>
+                <tr class=" tabelaHeader header">
+                    <td class="header__item">
+                        <span style="cursor:pointer;">Conta Origem</span>
+                    </td>
+                    <td class="header__item">
+                        <span style="cursor:pointer;">Conta Destino</span>
+                    </td>
+                    <td class="header__item">
+                        <span style="cursor:pointer;">Valor Transação</span>
+                    </td>
+                    <td class="header__item">
+                        <span style="cursor:pointer;">Data Transferência</span>
+                    </td>
+                    <td class="header__item">
+                        <span style="cursor:pointer;">Data Agendamento</span>
+                    </td>
+                    <td class="header__item">
+                        <span style="cursor:pointer;">Taxa Transferência</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="lista__body">
+            <table class="table tabelaCabecalho table--hover table--truncate">
+                <colgroup>
+                    <col style="width: 15%">
+                    <col style="width: 15%">
+                    <col style="width: 15%">
+                    <col style="width: 20%">
+                    <col style="width: 20%">
+                    <col style="width: 15%">
+                </colgroup>
+                <tbody class="tabela__conteudo">
+                    <tr ng-repeat="item in listaTransferencias track by $index">
+                        <td class="item__conteudo">{{item.contaOrigem}}</td>
+                        <td class="item__conteudo">{{item.contaDestino}}</td>
+                        <td class="item__conteudo">R$ {{item.valorTransacao | currency : ' '}} </td>
+                        <td class="item__conteudo">{{item.dataTransferencia | date : "dd/MM/yyyy"}}</td>
+                        <td class="item__conteudo">{{item.dataAgendamento   | date : "dd/MM/yyyy"}}</td>
+                        <td class="item__conteudo"> R$  {{item.taxaTranferencia | currency : ' '}}</td>                      
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
 
 </html>
